@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniWebshop", "MiniWebshop\MiniWebshop.csproj", "{7C511B49-67CD-49DD-81E2-3F9CEBB928EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MWRepo", "ClassLibrary2\MWRepo.csproj", "{8A5EB863-49C8-4E04-AAC5-1C213230346E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7C511B49-67CD-49DD-81E2-3F9CEBB928EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C511B49-67CD-49DD-81E2-3F9CEBB928EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C511B49-67CD-49DD-81E2-3F9CEBB928EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A5EB863-49C8-4E04-AAC5-1C213230346E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A5EB863-49C8-4E04-AAC5-1C213230346E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A5EB863-49C8-4E04-AAC5-1C213230346E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A5EB863-49C8-4E04-AAC5-1C213230346E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

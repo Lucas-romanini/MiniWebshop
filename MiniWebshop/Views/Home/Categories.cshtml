@@ -1,0 +1,20 @@
+﻿@model List<MWRepo.Models.CategoryVM>
+@{
+    ViewBag.Title = "Categories";
+}
+
+<div class="row categories">
+    @foreach (MWRepo.Models.CategoryVM VM in Model)
+    {
+        <div class="col-lg-4">
+            <a href="/Home/Products/@VM.Category.ID">
+                <div>
+                    <p>
+                        @VM.Category.Name
+                    </p>
+                    <img src="~/Content/Images/@VM.Image.ImageUrl" class="img-responsive"/>
+                </div>
+            </a>
+        </div>
+    }
+</div>
