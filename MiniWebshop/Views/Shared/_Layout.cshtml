@@ -12,14 +12,14 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header row">
-                <div class="col-lg-4">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="row">
+                <div class="col-lg-2">
+                   <img src="http://via.placeholder.com/150x70"class=" img-responsive" /> 
+                </div>
+                <div class="col-lg-2">
+                    <div>
+                        <a href="/Home/Cart">Shopping Cart [@ViewBag.AmountOfPrpductsInCart]</a>
+                    </div>
                 </div>
                 <div class="col-lg-4">
                     <a href="/home/About/">About</a>
