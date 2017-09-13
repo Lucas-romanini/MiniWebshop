@@ -162,5 +162,16 @@ namespace MiniWebshop.Controllers
         }
 
         #endregion
+
+        #region checkout
+
+        public ActionResult Checkout()
+        {
+            List<ProductVM> cartItems = cart.GetShoppingCart();
+            return View(cartItems);
+        }
+
+        #endregion
+
     }
-}
+}   
