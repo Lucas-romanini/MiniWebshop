@@ -171,6 +171,15 @@ namespace MiniWebshop.Controllers
             return View(cartItems);
         }
 
+        public ActionResult CheckputSubmit(Order order)
+        {
+            return Redirect("OrderConfirmation");
+        }
+
+        public ActionResult OrderConfirmation()
+        {
+            return View();
+        }
         #endregion
 
     }

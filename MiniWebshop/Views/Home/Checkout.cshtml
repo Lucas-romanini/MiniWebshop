@@ -295,7 +295,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <form action="/Home/ChackputSubmit" method="post">
+            <form action="/Home/CheckputSubmit" method="post" id="checkout-form">
                 <input type="hidden" name="Fullname" id="form-fullname" />
                 <input type="hidden" name="Phone" id="form-phone" />
                 <input type="hidden" name="Email" id="form-email" />
@@ -315,7 +315,7 @@
                     <input type="hidden" name="ProductIDs" value="@vm.Product.ID"/>
                 }
 
-                <input type="button" value="Done" />
+                <input type="button" value="Done" onclick="finishCheckout()" />
             </form>
         </div>
     </div>
@@ -347,6 +347,40 @@
                     })
                 }
 
+                function finishCheckout() {
+                    var _form = $("#checkout-form");
+
+                    var _fullname = $("#bill-fullname");
+                    var _phone = $("#bill-phone");
+                    var _email = $("#bill-email");
+                    var _address = $("#bill-address");
+                    var _postal = $("#bill-postal");
+                    var _city = $("#bill-city");
+
+
+                    var _fullname_delivery = $("#delivery-fullname");
+                    var _phone_delivery = $("#delivery-phone");
+                    var _email_delivery = $("#delivery-email");
+                    var _address_delivery = $("#delivery-address");
+                    var _postal_delivery = $("#delivery-postal");
+                    var _city_delivery = $("#delivery-city");
+
+                    $("#form-fullname").val(_fullname);
+                    $("#form-phone").val(_phone);
+                    $("#form-email").val(_email);
+                    $("#form-address").val(_address);
+                    $("#form-postal").val(_postal);
+                    $("#form-city").val(_city);
+
+                    $("#form-fullname-delivery").val(_fullname_delivery);
+                    $("#form-phone-delivery").val(_phone_delivery);
+                    $("#form-email-delivery").val(_email_delivery);
+                    $("#form-address-delivery").val(_address_delivery);
+                    $("#form-postal-delivery").val(_postal_delivery);
+                    $("#form-city-delivery").val(_city_delivery);
+
+                    _form.submit();
+                }
 
             </script>
         }
