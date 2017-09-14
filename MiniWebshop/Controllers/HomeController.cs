@@ -171,8 +171,11 @@ namespace MiniWebshop.Controllers
             return View(cartItems);
         }
 
-        public ActionResult CheckputSubmit(Order order)
+        [HttpPost]
+        public ActionResult CheckoutSubmit(Order order)
         {
+            EmailClient emailClient = new EmailClient("smtp.gmail.com", 578, "webitumbraco@gmail.com", "FedeAbe200", true);
+            emailClient.SendEmail("lucas@romanini.dk");
             return Redirect("OrderConfirmation");
         }
 
