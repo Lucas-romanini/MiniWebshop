@@ -32,13 +32,13 @@ namespace MiniWebshop.Controllers
         {
             return View();
         }
-            
+
         public ActionResult Categories()
         {
             List<CategoryVM> categories = new List<CategoryVM>();
 
-            
-            foreach(Category item in categoryFac.GetAll())
+
+            foreach (Category item in categoryFac.GetAll())
             {
                 CategoryVM categoryVM = new CategoryVM();
                 categoryVM.Category = item;
@@ -54,7 +54,7 @@ namespace MiniWebshop.Controllers
         public ActionResult Products(int? id)
         {
             List<ProductVM> products = new List<ProductVM>();
-            if(TempData["searchResult"] != null)
+            if (TempData["searchResult"] != null)
             {
                 foreach (Product item in TempData["searchResult"] as List<Product>)
                 {
@@ -80,7 +80,7 @@ namespace MiniWebshop.Controllers
             }
             else
             {
-                foreach (Product item in productFac.GetBy("CategoryID",id))
+                foreach (Product item in productFac.GetBy("CategoryID", id))
                 {
                     ProductVM productVM = new ProductVM();
                     productVM.Product = item;
@@ -140,7 +140,7 @@ namespace MiniWebshop.Controllers
             vm.Images = imageFac.GetBy("ProductID", id);
             vm.Category = categoryFac.Get(vm.Product.CategoryID);
 
-            for (int i = 0; i <amount; i++)
+            for (int i = 0; i < amount; i++)
             {
                 cart.Add(vm);
             }
@@ -157,7 +157,7 @@ namespace MiniWebshop.Controllers
 
         public ActionResult Cart()
         {
-            
+
             return View(cart.GetShoppingCart());
         }
 
@@ -171,8 +171,11 @@ namespace MiniWebshop.Controllers
             return View(cartItems);
         }
 
-        public ActionResult CheckputSubmit(Order order)
+        [HttpPost]
+        public ActionResult CheckoutSubmit(Order order)
         {
+            EmailClient emailClient = new EmailClient("smtp.gmail.com", 587, "webitumbraco@gmail.com", "FedeAbe2000", true);
+            emailClient.SendEmail(order.Email);
             return Redirect("OrderConfirmation");
         }
 
@@ -183,4 +186,4 @@ namespace MiniWebshop.Controllers
         #endregion
 
     }
-}   
+}
