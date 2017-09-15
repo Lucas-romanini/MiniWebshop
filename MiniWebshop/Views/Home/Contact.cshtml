@@ -3,5 +3,42 @@
     ViewBag.Title = "Contact";
 }
 
-<h2>Contact</h2>
-
+<div class="row contact">
+    <div class="col-lg-12">
+        <h3>Contact ud</h3>
+        <p>Send us an email from the form down below</p>
+        <div class="row">
+            <form action="/Home/ContactSubmit" method="Post">
+                <div class="col-lg-6">
+                    <table>
+                        <tr>
+                            <td>Name</td>
+                            <td><input type="text" name="name" required placeholder="Your name..." /></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><input type="email" name="email" required placeholder="Your Email address" /></td>
+                        </tr>
+                        <tr>
+                            <td>Subject</td>
+                            <td><input type="text" name="subject" required placeholder="Subject..." /></td>
+                        </tr>
+                    </table>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h6>Your message</h6>
+                            </div>
+                            <div class="col-lg-12">
+                                <textarea name="message"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <input type="submit" value="Send Message" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

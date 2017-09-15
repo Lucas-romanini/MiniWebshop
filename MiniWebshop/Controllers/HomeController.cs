@@ -130,6 +130,14 @@ namespace MiniWebshop.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult ContactSubmit (string name, string email, string subject, string message)
+        {
+            EmailClient emailClient = new EmailClient("smtp.gmail.com", 587, "webitumbraco@gmail.com", "FedeAbe2000", true);
+            emailClient.SendNotification(name,email, subject, message);
+            return RedirectToAction("Contact");
+        }
+
         #region ShoppingCart
 
         [HttpPost]
@@ -175,7 +183,8 @@ namespace MiniWebshop.Controllers
         public ActionResult CheckoutSubmit(Order order)
         {
             EmailClient emailClient = new EmailClient("smtp.gmail.com", 587, "webitumbraco@gmail.com", "FedeAbe2000", true);
-            emailClient.SendEmail(order.Email);
+           // emailClient.SendEmail(order.Email);
+            emailClient.SendNotification(order.Fullname, order.Email, Request.PhysicalApplicationPath + @"\EmailTemplates\Notification.html");
             return Redirect("OrderConfirmation");
         }
 
