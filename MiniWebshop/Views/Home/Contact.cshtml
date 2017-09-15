@@ -38,6 +38,12 @@
                         <input type="submit" value="Send Message" />
                     </div>
                 </div>
+                @if(TempData["ContactMSG"] != null)
+                {
+                    <div class="col-lg-12">
+                        <p>@TempData["ContactMSG"]</p>
+                    </div>
+                }
             </form>
         </div>
     </div>

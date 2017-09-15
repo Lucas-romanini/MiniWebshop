@@ -135,6 +135,7 @@ namespace MiniWebshop.Controllers
         {
             EmailClient emailClient = new EmailClient("smtp.gmail.com", 587, "webitumbraco@gmail.com", "FedeAbe2000", true);
             emailClient.SendNotification(name,email, subject, message);
+            TempData["ContactMSG"] = "Din Besked er blevet sendt!";
             return RedirectToAction("Contact");
         }
 
