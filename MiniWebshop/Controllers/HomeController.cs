@@ -33,6 +33,11 @@ namespace MiniWebshop.Controllers
             return View();
         }
 
+        public ActionResult TermsOfTrade()
+        {
+            return View();
+        }
+
         public ActionResult Categories()
         {
             List<CategoryVM> categories = new List<CategoryVM>();
