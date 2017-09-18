@@ -184,8 +184,28 @@ namespace MiniWebshop.Controllers
         public ActionResult CheckoutSubmit(Order order)
         {
             EmailClient emailClient = new EmailClient("smtp.gmail.com", 587, "webitumbraco@gmail.com", "FedeAbe2000", true);
-           // emailClient.SendEmail(order.Email);
-            emailClient.SendNotification(order.Fullname, order.Email, Request.PhysicalApplicationPath + @"\EmailTemplates\Notification.html");
+            //emailClient.SendEmail(order.Email);
+            //emailClient.SendNotification(order.Fullname, order.Email, Request.PhysicalApplicationPath + @"\EmailTemplates\Notification.html");
+
+            List<Product> productsInOrder = new List<Product>();
+            for (int i = 0; i < order.ProductIDs.Count; i++)
+            {
+                productsInOrder.Add(productFac.Get(order.ProductIDs[i]));
+            }
+
+
+            List<ProductVM> products = new List<ProductVM>();
+            foreach (Product item in productsInOrder)
+            {
+                ProductVM productVM = new ProductVM();
+                productVM.Product = item;
+                productVM.Images = imageFac.GetBy("ProductID", item.ID);
+                productVM.Category = categoryFac.Get(item.CategoryID);
+
+                products.Add(productVM);
+            }
+
+            emailClient.SendInvoice(order, products);
             return Redirect("OrderConfirmation");
         }
 

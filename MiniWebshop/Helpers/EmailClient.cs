@@ -5,6 +5,7 @@ using System.Web;
 using System.Net.Mail;
 using System.Web.Hosting;
 using System.IO;
+using MWRepo.Models;
 
 public class EmailClient
 {
@@ -98,8 +99,84 @@ public class EmailClient
 
     }
 
-    internal void SendNotification(string fullname, string email, string v)
+
+    public string TableRow(string data)
     {
-        throw new NotImplementedException();
+        return "<tr>" + data + "</tr>";
     }
+
+    public string TableData(string info)
+    {
+        return "<td>" + info + "</td>";
+    }
+
+
+    public void SendInvoice(Order order, List<ProductVM> products)
+    {
+        string htmlBody = ReadHtml(HostingEnvironment.ApplicationPhysicalPath + @"/EmailTemplates/InvoiceTop.html");
+
+        htmlBody = htmlBody.Replace("{orderNumber}", "9999");
+        htmlBody = htmlBody.Replace("{fullName}", order.Fullname);
+        htmlBody = htmlBody.Replace("{phone}", order.Phone);
+        htmlBody = htmlBody.Replace("{email}", order.Email);
+        htmlBody = htmlBody.Replace("{address}", order.Address);
+        htmlBody = htmlBody.Replace("{postal}", order.Postal);
+        htmlBody = htmlBody.Replace("{city}", order.City);
+
+        if (order.Fullname_Delivery != null)
+        {
+            htmlBody = htmlBody.Replace("{orderNumber-delivery}", "9999");
+            htmlBody = htmlBody.Replace("{fullName-delivery}", order.Fullname_Delivery);
+            htmlBody = htmlBody.Replace("{phone-delivery}", order.Phone_Delivery);
+            htmlBody = htmlBody.Replace("{email-delivery}", order.Email_Delivery);
+            htmlBody = htmlBody.Replace("{address-delivery}", order.Address_Delivery);
+            htmlBody = htmlBody.Replace("{postal-delivery}", order.Postal_Delivery);
+            htmlBody = htmlBody.Replace("{city-delivery}", order.City_Delivery);
+        }
+
+        string productBody = "";
+
+        double total = 0;
+
+        foreach (ProductVM vm in products)
+        {
+            productBody += TableRow(
+                TableData(vm.Product.Name) +
+                TableData(vm.Product.Description) +
+                TableData(vm.Product.Price.ToString())
+                );
+
+            total += vm.Product.GetPrice();
+        }
+
+        productBody += TableRow(
+            "<td colspan='2'>Total</td>" +
+            "<td>" + total + "</td>"
+            );
+
+        htmlBody += productBody; 
+
+        htmlBody += ReadHtml(HostingEnvironment.ApplicationPhysicalPath + @"/EmailTemplates/InvoiceBottom.html");
+
+        htmlBody = htmlBody.Replace("{year}", DateTime.Now.Year.ToString());
+
+        MailMessage mail = new MailMessage();
+        mail.IsBodyHtml = true;
+        mail.Body = htmlBody;
+        mail.From = new MailAddress(_systemEmail);
+        mail.To.Add(new MailAddress(order.Email));
+        mail.Subject = "Invoice from Webshop test Order: 9999";
+
+        mailClient.Send(mail);
+
+    }
+
+
+
+
+
+    //internal void SendNotification(string fullname, string email, string v)
+    //{
+    //    throw new NotImplementedException();
+    //}
 }
