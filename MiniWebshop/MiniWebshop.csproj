@@ -103,6 +103,10 @@
     <Content Include="Content\Images\image4.jpg" />
     <Content Include="Content\Images\image5.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="EmailTemplates\InvoiceBottom.html" />
+    <Content Include="EmailTemplates\InvoiceTop.html" />
+    <Content Include="EmailTemplates\NotificationToAdmin.html" />
+    <Content Include="EmailTemplates\Notification.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
